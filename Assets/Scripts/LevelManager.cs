@@ -45,9 +45,11 @@ public class LevelManager : MonoBehaviour
         //Display current level name
         currentLevel = SceneManager.GetActiveScene().name;
         levelText.text = currentLevel;
+        // currentLevel = GameManager.GameMan.level;
     }
     public void LoadNextLevel()
     {
+        
         NextLevel = levelList[levelList.IndexOf(currentLevel) + 1];
        SceneManager.LoadScene(NextLevel);
     }
