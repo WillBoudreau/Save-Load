@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
+    //Script call
+    public static LevelManager LevelMan;
+    //Varaiables
     public string currentLevel;
 
     public string NextLevel;
@@ -17,31 +22,38 @@ public class LevelManager : MonoBehaviour
 
     public List<string> levelList;
 
+    public TextMeshProUGUI levelText;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Add all levels to list
         levelList = new List<string>();
         SceneCount = SceneManager.sceneCountInBuildSettings;
         for (int i = 0; i < SceneCount; i++)
         {
-            Debug.Log(SceneManager.GetSceneByBuildIndex(i).name);
-            sceneName = SceneManager.GetSceneByBuildIndex(i).name;
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            sceneName = System.IO.Path.GetFileNameWithoutExtension(path);
             levelList.Add(sceneName);
         }
+        levelText = GameObject.Find("LevelText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Display current level name
         currentLevel = SceneManager.GetActiveScene().name;
+        levelText.text = currentLevel;
     }
-    public void LoadNextLevel(string nextLevel)
+    public void LoadNextLevel()
     {
-        SceneManager.LoadScene(nextLevel);
-        NextLevel = nextLevel;
+        NextLevel = levelList[levelList.IndexOf(currentLevel) + 1];
+       SceneManager.LoadScene(NextLevel);
     }
-    public void LoadPreviousLevel(string previousLevel)
+    public void LoadPreviousLevel()
     {
-        SceneManager.LoadScene(previousLevel);
+        PreviousLevel = levelList[levelList.IndexOf(currentLevel) - 1];
+        SceneManager.LoadScene(PreviousLevel);
     }
 }
