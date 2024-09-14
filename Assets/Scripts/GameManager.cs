@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class GameManager : MonoBehaviour
     public LevelManager LevelManager;
     //Varaiables
     public int GameManCount;
+    public TextMeshProUGUI GameManNum;
     public float health;
     public float score;
     public float Xp;
     public int level;
     public float damage;
+    public float Intelligence;
     // Start is called before the first frame update
     void Awake()
     {
@@ -45,6 +48,12 @@ public class GameManager : MonoBehaviour
     {
         GameManCount = FindObjectsOfType<GameManager>().Length;
         KeyInput();
+        UpdateNumofGameMan();
+    }
+    void UpdateNumofGameMan()
+    {
+        GameManNum.text = "" + GameManCount;
+        GameManCount = FindObjectsOfType<GameManager>().Length;
     }
     //Save method
     public void Save()
@@ -58,6 +67,7 @@ public class GameManager : MonoBehaviour
         data.Xp = Xp;
         data.level = level;
         data.damage = damage;
+        data.Intelligence = Intelligence;
 
         bf.Serialize(file, data);
         file.Close();
@@ -77,6 +87,7 @@ public class GameManager : MonoBehaviour
             Xp = data.Xp;
             level = data.level;
             damage = data.damage;
+            Intelligence = data.Intelligence;
         }
     }
     void KeyInput()
@@ -106,5 +117,6 @@ public class GameManager : MonoBehaviour
         public float Xp;
         public int level;
         public float damage;
+        public float Intelligence;
     }
 }
