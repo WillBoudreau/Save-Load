@@ -11,6 +11,7 @@ public class StatsManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI IntelligenceText;
+    public TextMeshProUGUI StealthText;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class StatsManager : MonoBehaviour
         scoreText.text = "Score: " + GameManager.GameMan.score;
         damageText.text = "Damage: " + GameManager.GameMan.damage;
         IntelligenceText.text = "Intelligence: " + GameManager.GameMan.Intelligence;
+        StealthText.text = "Stealth: " + GameManager.GameMan.Stealth;
     }
     public void HealthUp()
     {
@@ -84,6 +86,18 @@ public class StatsManager : MonoBehaviour
         if (GameManager.GameMan.Intelligence < 0)
         {
             GameManager.GameMan.Intelligence = 0;
+        }
+    }
+    public void StealthUp()
+    {
+        GameManager.GameMan.Stealth += 10;
+    }
+    public void StealthDown()
+    {
+        GameManager.GameMan.Stealth -= 10;
+        if (GameManager.GameMan.Stealth < 0)
+        {
+            GameManager.GameMan.Stealth = 0;
         }
     }
 }

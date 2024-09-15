@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int level;
     public float damage;
     public float Intelligence;
+    public float Stealth;
     // Start is called before the first frame update
     void Awake()
     {
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
         data.level = level;
         data.damage = damage;
         data.Intelligence = Intelligence;
+        data.Stealth = Stealth;
 
         bf.Serialize(file, data);
         file.Close();
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
             level = data.level;
             damage = data.damage;
             Intelligence = data.Intelligence;
+            Stealth = data.Stealth;
         }
     }
     void KeyInput()
@@ -118,5 +121,6 @@ public class GameManager : MonoBehaviour
         public int level;
         public float damage;
         public float Intelligence;
+        public float Stealth;
     }
 }
