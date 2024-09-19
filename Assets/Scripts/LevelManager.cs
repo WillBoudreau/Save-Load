@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     string NextLevel;
 
-     string PreviousLevel;
+    string PreviousLevel;
 
     public string sceneName;
 
@@ -46,17 +46,20 @@ public class LevelManager : MonoBehaviour
         currentLevel = SceneManager.GetActiveScene().name;
         levelText.text = currentLevel;
     }
+    //Load level by index
     public void LoadLevel(int Level)
     {
         Debug.Log(Level);
         SceneManager.LoadScene(levelList[Level]);
     }
+    //Load next level
     public void LoadNextLevel()
     {
         NextLevel = levelList[levelList.IndexOf(currentLevel) + 1];
         GameManager.GameMan.level = levelList.IndexOf(currentLevel) + 1;
         SceneManager.LoadScene(NextLevel);
     }
+    //Load previous level
     public void LoadPreviousLevel()
     {
         PreviousLevel = levelList[levelList.IndexOf(currentLevel) - 1];

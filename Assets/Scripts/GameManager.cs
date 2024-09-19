@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Find the number of GameManager objects in the scene
         GameManCount = FindObjectsOfType<GameManager>().Length;
         KeyInput();
         UpdateNumofGameMan();
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
         data.health = health;
         data.score = score;
         data.Xp = Xp;
-        data.level = level;
+        data.level = LevelManager.levelList.IndexOf(LevelManager.currentLevel);
         data.damage = damage;
         data.Intelligence = Intelligence;
         data.Stealth = Stealth;

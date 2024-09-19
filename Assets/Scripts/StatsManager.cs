@@ -21,6 +21,7 @@ public class StatsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update the text
         healthText.text = "Health: " + GameManager.GameMan.health;
         XpText.text = "Xp: " + GameManager.GameMan.Xp;
         scoreText.text = "Score: " + GameManager.GameMan.score;
@@ -28,6 +29,7 @@ public class StatsManager : MonoBehaviour
         IntelligenceText.text = "Intelligence: " + GameManager.GameMan.Intelligence;
         StealthText.text = "Stealth: " + GameManager.GameMan.Stealth;
     }
+    //Increase and decrease methods
     public void HealthUp()
     {
         GameManager.GameMan.health += 10;
